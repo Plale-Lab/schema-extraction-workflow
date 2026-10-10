@@ -417,5 +417,21 @@
     "tests/test_name_review.py",
     "tests/fixtures/v25_53_failure",
     "tools/package_name_output.py"
-  ]
+  ],
+  "methodology": {
+    "updated_utc": "2026-10-10T07:09:46.409192+00:00",
+    "source": "Latest supplied Section II B-D replacement and preview, version 2.",
+    "files": [
+      {
+        "path": "docs/methodology.tex",
+        "bytes": 8771,
+        "sha256": "a3086c371a2b7462612f485c42e2cfcb4d9c1d780f785b0107a4457b525a6dc7"
+      },
+      {
+        "path": "docs/methodology_preview.pdf",
+        "bytes": 53900,
+        "sha256": "ac5ba69a0679e7b45884adc4231ec11d6f8d458c9dba9d6e2446b5594b846b70"
+      }
+    ]
+  }
 }

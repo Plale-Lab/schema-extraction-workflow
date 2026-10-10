@@ -54,8 +54,8 @@ text. They are prepared requests, without generated schema results.
 
 | Source | Prepare evidence | Establish names | Enrich attributes |
 | --- | --- | --- | --- |
-| Paper | Extract PDF text; record source hashes, physical pages and exact character intervals | Scan all passages; reconcile candidate views and fields using record entities, granularity and source relationships | Fill small batches from focused paper passages; retain independent support for each attribute |
-| Dataset | Read physical columns, order and native metadata; preserve a fixed seed-42 sample of at most 200 rows and support documents | Keep position-based field handles, including duplicate names; bind documents to their tables and fields | Interpret native facts, saved observations and documents; distinguish declared, observed, inferred and unknown decisions |
+| Paper | Extract PDF text; record source hashes, physical pages and exact character intervals | Scan all passages; reconcile candidate views and fields using record entities, granularity and source relationships | Fill field descriptions and other attributes from focused paper passages; retain independent support for each attribute |
+| Dataset | Read physical columns, order and native metadata; preserve a fixed seed-42 sample of at most 200 rows and support documents | Keep position-based field handles, including duplicate names; bind documents to their tables and fields | Fill field descriptions and other attributes using native facts, saved observations and documents; distinguish declared, observed, inferred and unknown decisions |
 
 Paper extraction excludes dataset files and external knowledge. Dataset
 observations do not establish population-wide requiredness, uniqueness or other

@@ -1,6 +1,9 @@
 % Replacement for Section II, subsections B--D only.
 % Retain the paper's existing Section II introduction, subsection A,
 % and subsection E onward. No additional packages are required.
+% Optional alignment edit for the retained subsection A, outside this fragment:
+% A schema table denotes a dataset object or view identified across relevant
+% passages and printed tables, rather than one schema per printed table.
 
 \subsection{Digital Text (``Papers'') Workflow}
 \label{sec:paper-workflow}
@@ -31,18 +34,22 @@ source passages, including those marked irrelevant.
 The LLM proposes candidate dataset views, fields and descriptive elements
 from the paper. It then keeps, merges or excludes candidates using the
 entities represented by the records, their level of detail, and the files
-and relationships described in the source. A printed table may describe part
-of a dataset without being a
-dataset table itself, and one dataset view may be described in several
-passages. Grouping resolves these distinctions before attribute enrichment.
+and relationships described in the source. In the representation of
+Section~II-A, a schema table denotes a dataset object or view identified
+across passages and printed tables, rather than one schema per printed
+table. A printed table may describe only part of a dataset view, and several
+passages may describe that same view. Grouping resolves these distinctions
+before attribute enrichment.
 The result is an inventory of retained names and their table membership,
 with supporting evidence.
 
 \subsubsection{Stage 3: Enrich attributes:}
 For small batches of established objects, the LLM receives focused source
-passages and fills the requested attributes, such as datatype, unit or
-encoding. Each attribute requires its own supporting evidence or an explicit
-unknown decision. A supported name does not establish its datatype or unit.
+passages and fills the requested attributes, including field descriptions,
+datatype, unit and encoding. Each attribute requires its own supporting
+evidence or an explicit unknown decision. A supported name alone does not
+establish a field description, datatype or unit. Descriptions must be grounded
+in source statements.
 Unsupported optional attributes remain unknown rather than being completed
 from general knowledge or the released dataset. Because a focused request
 may receive only selected passages, an unknown value does not prove that
@@ -75,7 +82,10 @@ The resulting inventory fixes the objects available for attribute filling.
 
 \subsubsection{Stage 3: Enrich attributes:}
 The LLM uses the native readout, fixed sample and associated documentation
-to interpret fields and fill the configured attributes. Evidence records
+to fill field descriptions, datatypes, units and encoding attributes.
+Descriptions must be supported by source statements or documentation;
+name-only evidence or general knowledge does not establish a description.
+Evidence records
 distinguish explicit declarations, direct observations and inferences.
 For example, an observed string value is different from a declared type
 constraint, and a unit inferred from a name is different from an explicitly
@@ -97,25 +107,26 @@ inventory. Missing keys and newly introduced names are rejected. Accepted
 claims retain a value, provenance status, reason and source references.
 Provenance distinguishes \texttt{declared}, \texttt{observed} and
 \texttt{inferred} information; unresolved decisions are exported as
-\texttt{unknown}.
+\texttt{unknown}. These statuses distinguish the provenance of structural
+and semantic attributes. Sample observations and inferences are not treated
+as declared constraints. Aggregate profiling statistics are not emitted as
+schema claims.
 
 A separate review checks proposed decisions against their evidence and
 returns feedback for bounded repair. Final checks cover names, structure and
 claims; failed checks block acceptance. Unresolved optional attributes and
 deferred source references remain visible. The harness retains source views
 and model responses, allowing a reader to inspect both the selected values
-and the decisions behind them. Contract and citation checks establish that
-an output is well formed and source-linked; they do not guarantee that its
-meaning is correct.
+and the decisions behind them. Contract and citation checks establish a
+well-formed, source-linked output; they do not guarantee semantic correctness.
 
 \subsubsection{Schema and evidence outputs:}
 Accepted decisions are assembled deterministically into
 \texttt{full-schema.json}. The schema describes datasets, tables and fields,
-with structure, value and encoding attributes. This is the representation
-used for subsequent paper--dataset comparison.
+with structure, value and encoding attributes.
 The separate \texttt{evidence.json} retains supporting evidence, conflicts,
-coverage and unresolved decisions. Keeping both outputs makes the result
-useful as a schema and as an inspectable record of how it was obtained.
+coverage and unresolved decisions. The schemas pass to the comparison
+procedure, while the evidence remains available for source-level inspection.
 
 \par\smallskip\noindent
 \begin{minipage}{\columnwidth}

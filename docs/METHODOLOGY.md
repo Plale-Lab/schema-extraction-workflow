@@ -15,12 +15,15 @@ surround those layers.
 2. **Discover names and group tables.** Propose dataset views, fields and other
    descriptive elements. Keep, merge or exclude candidates using the record
    entity, level of detail, files and relationships stated in the paper.
-   A printed report table is not automatically a dataset table. Several passages
-   may describe one dataset view. Retain names, membership and supporting sources.
-3. **Enrich attributes.** Fill attributes for small batches of established
-   objects from focused passages. Every attribute needs its own source support or
-   an explicit unknown decision. Name evidence alone does not establish datatype,
-   unit, provenance or processing. An unknown from selected passages does not
+   A schema table denotes a dataset object or view identified across relevant
+   passages and printed tables. A printed table may describe part of a dataset
+   view, and several passages may describe that same view. Retain names, membership and supporting sources.
+3. **Enrich attributes.** Fill field descriptions, datatypes, units and
+   encoding attributes for small batches of established objects from focused
+   passages. Every attribute needs its own source support or
+   an explicit unknown decision. Name evidence alone does not establish a field
+   description, datatype, unit, provenance or processing. Descriptions require
+   supporting source statements. An unknown from selected passages does not
    prove absence from the whole paper.
 
 Paper-side requests use the publication only. Dataset files, repository
@@ -36,8 +39,11 @@ documentation, human annotations and previous model answers are excluded.
 2. **Establish names and bind documentation.** Physical columns fix the field
    inventory. Position-based handles distinguish duplicate names. Associate
    supporting documents with the corresponding tables and fields.
-3. **Enrich attributes.** The model interprets the native readout, fixed sample
-   and associated documents. Evidence distinguishes explicit declarations,
+3. **Enrich attributes.** The model uses the native readout, fixed sample and
+   associated documents to fill field descriptions, datatypes, units and encoding
+   attributes. Descriptions require supporting source statements or documentation;
+   a name or general knowledge alone does not establish a description.
+   Evidence distinguishes explicit declarations,
    direct observations and inference. Sample values do not establish constraints
    over an entire dataset. Unsupported optional attributes remain unknown.
 
@@ -52,6 +58,9 @@ Requests are bound to JSON contracts and an established object inventory.
 Missing decision keys, foreign source IDs, unsupported new names and stale
 membership links are rejected. Declared, observed and inferred claims retain a
 value, reason and references; unresolved decisions have unknown status.
+These statuses apply to structural and semantic attributes. Sample observations
+and inference are not treated as declared constraints. Aggregate profiling
+statistics are not emitted as schema claims.
 
 Separate model review checks source evidence without relying on the generator's
 persuasive rationale. Deterministic guards additionally reject known failures,
