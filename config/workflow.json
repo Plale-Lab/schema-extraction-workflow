@@ -1,0 +1,40 @@
+{
+  "aggregate_call_limit": null,
+  "aggregate_time_limit": null,
+  "baseline_version": "V25.53",
+  "compact_attribute_batches_enabled": true,
+  "completion_profile": "names_first",
+  "context_tokens": 32768,
+  "delivery_evidence_filename": "evidence.json",
+  "delivery_schema_filename": "full-schema.json",
+  "evaluation_alignment_order": [
+    "name",
+    "description",
+    "value.datatype",
+    "value.unit"
+  ],
+  "manual_accumulation_enabled": true,
+  "max_field_batch_items": 4,
+  "max_optional_source_packets_per_item": 2,
+  "max_repairs_per_item": 2,
+  "max_split_depth": 2,
+  "max_wire_bytes": 65536,
+  "model_layers": [
+    "classification",
+    "extraction"
+  ],
+  "name": "2-layer-schema-extraction-harness",
+  "native_generation_enabled": false,
+  "output_tokens": {
+    "classification": 3072,
+    "extraction": 4096
+  },
+  "prompt_version": "swathi-2026-10-08-descriptions",
+  "request_timeout_seconds": 240,
+  "runtime_manual_enabled": false,
+  "safety_reserve_tokens": 512,
+  "status": "public_snapshot_offline_default",
+  "stop_after_same_error_without_progress": 2,
+  "thinking_enabled": false,
+  "unknown_optional_attributes_allowed": true
+}

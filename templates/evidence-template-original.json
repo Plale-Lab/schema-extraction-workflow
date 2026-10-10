@@ -1,0 +1,22 @@
+{
+  "job_id": "<same job id as the schema file>",
+  "table": "<same table name as the schema file>",
+  "evidence": {
+    "table": {
+      "<name | encoding.fileType>": {
+        "status": "declared | observed | inferred | unknown",
+        "evidence_ids": ["<evidence id>"],
+        "support": "<verbatim quote, for document evidence>",
+        "reason": "<explanation, for observed, inferred or unknown>"
+      }
+    },
+    "<field name>": {
+      "<required | unique | role | conformsTo | value.datatype | value.unit | value.enum.values | value.enum.labels | value.enum.valueSet | value.precision | value.missingValues>": {
+        "status": "declared | observed | inferred | unknown",
+        "evidence_ids": ["<evidence id>"],
+        "support": "<verbatim quote, for document evidence>",
+        "reason": "<explanation, for observed, inferred or unknown>"
+      }
+    }
+  }
+}

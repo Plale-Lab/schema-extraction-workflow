@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "case_ids": [
+    "synthetic-paper",
+    "synthetic-dataset"
+  ],
+  "limits": {
+    "generation_requests": 100,
+    "wall_seconds": 3600,
+    "case_generation_requests": 50,
+    "case_wall_seconds": 1800
+  },
+  "workflow_overrides": {
+    "completion_profile": "names_first",
+    "compact_attribute_batches_enabled": true
+  }
+}

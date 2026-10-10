@@ -1,0 +1,34 @@
+{
+  "table": {
+    "name": "<table name>",
+    "description": "<how this table is created and what it represents; include time step, time zone, layout, field counts and naming conventions if stated>",
+    "conformsTo": "<standard IRI, list of IRIs, or null>",
+    "structure": {
+      "fields": [
+        {
+          "name": "<column name>",
+          "description": "<how this field is created and what it represents; include name patterns, aggregation, period, time zone, source, level, unit conversion, scale and derivation if stated>",
+          "conformsTo": "<standard term IRI, list of IRIs, or null>",
+          "role": "identifier | timeIndex | rowIndex | target | partition",
+          "required": true,
+          "unique": false,
+          "value": {
+            "datatype": "integer | decimal | string | boolean | date | datetime | timestamp",
+            "unit": {
+              "system": "<unit vocabulary IRI>",
+              "code": "<unit code>"
+            },
+            "enum": {
+              "values": ["<value 1>", "<value 2>", "<value n>"],
+              "valueSet": "<code list IRI>"
+            }
+          }
+        }
+      ]
+    },
+    "encoding": {
+      "fileType": "<as found, e.g. csv, tsv, parquet, xlsx, json, jsonl>",
+      "header": true
+    }
+  }
+}

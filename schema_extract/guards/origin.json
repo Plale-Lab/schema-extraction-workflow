@@ -1,0 +1,6 @@
+{
+  "identity": "Unissued V25.54 draft source-aware guard, adopted for the distinct two-layer integration. No frozen baseline changes.",
+  "limitations": "A deterministic negative guard complements independent semantic review; it never supplies schema content or establishes complete source truth.",
+  "source_sha256": "44eccd8c244ffe2e5343794fcdf2d8cba10edebb0cfc6610cc32089f8b40e3df",
+  "source": "Author-owned earlier harness draft; adopted into the current two-layer implementation."
+}

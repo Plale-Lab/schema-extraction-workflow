@@ -1,0 +1,130 @@
+{
+  "type": "object",
+  "properties": {
+    "tables": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "row_entity": {
+            "type": "string"
+          },
+          "ref": {
+            "type": "object",
+            "properties": {
+              "source_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "source_id"
+            ],
+            "additionalProperties": false
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "ref": {
+                  "type": "object",
+                  "properties": {
+                    "source_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "source_id"
+                  ],
+                  "additionalProperties": false
+                },
+                "reason": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "ref",
+                "reason"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "name",
+          "row_entity",
+          "ref",
+          "fields"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "elements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "enum": [
+              "table",
+              "figure_caption",
+              "supplement",
+              "data_availability",
+              "methods",
+              "other_data"
+            ]
+          },
+          "location": {
+            "type": "string"
+          },
+          "ref": {
+            "type": "object",
+            "properties": {
+              "source_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "source_id"
+            ],
+            "additionalProperties": false
+          },
+          "table_indices": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "location",
+          "ref",
+          "table_indices",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "no_data_reason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "tables",
+    "elements",
+    "no_data_reason"
+  ],
+  "additionalProperties": false
+}

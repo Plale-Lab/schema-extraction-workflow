@@ -1,0 +1,397 @@
+{
+  "type": "object",
+  "properties": {
+    "field": {
+      "$ref": "#/$defs/decision"
+    }
+  },
+  "required": [
+    "field"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "decision": {
+      "type": "object",
+      "properties": {
+        "keep": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        }
+      },
+      "required": [
+        "keep",
+        "name",
+        "reason",
+        "claims"
+      ],
+      "additionalProperties": false
+    },
+    "claim": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "attribute": {
+              "enum": [
+                "name",
+                "description",
+                "conformsTo",
+                "role",
+                "required",
+                "unique",
+                "value.datatype",
+                "value.unit.system",
+                "value.unit.code",
+                "value.enum.values",
+                "value.enum.valueSet"
+              ]
+            },
+            "value": {},
+            "status": {
+              "enum": [
+                "declared",
+                "observed",
+                "inferred",
+                "unknown"
+              ]
+            },
+            "refs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "source_id"
+                ],
+                "additionalProperties": false
+              },
+              "maxItems": 4
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "attribute",
+            "value",
+            "status",
+            "refs",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "oneOf": [
+            {
+              "properties": {
+                "status": {
+                  "const": "unknown"
+                },
+                "value": {
+                  "type": "null"
+                },
+                "refs": {
+                  "maxItems": 0
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "enum": [
+                    "required",
+                    "unique"
+                  ]
+                },
+                "status": {
+                  "const": "unknown"
+                },
+                "value": {
+                  "type": "boolean",
+                  "const": false
+                },
+                "refs": {
+                  "maxItems": 0
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "name"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "description"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "conformsTo"
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:[^\\s]+$"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:[^\\s]+$"
+                      },
+                      "minItems": 1
+                    }
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "role"
+                },
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "identifier",
+                    "timeIndex",
+                    "rowIndex",
+                    "target",
+                    "partition"
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "required"
+                },
+                "value": {
+                  "type": "boolean"
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "unique"
+                },
+                "value": {
+                  "type": "boolean"
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "value.datatype"
+                },
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "integer",
+                    "decimal",
+                    "string",
+                    "boolean",
+                    "date",
+                    "datetime",
+                    "timestamp"
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "value.unit.system"
+                },
+                "value": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:[^\\s]+$"
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "value.unit.code"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "value.enum.values"
+                },
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "type": [
+                      "string",
+                      "number",
+                      "boolean"
+                    ]
+                  },
+                  "minItems": 1
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "value.enum.valueSet"
+                },
+                "value": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:[^\\s]+$"
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

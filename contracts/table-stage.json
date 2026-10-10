@@ -1,0 +1,242 @@
+{
+  "type": "object",
+  "properties": {
+    "table": {
+      "$ref": "#/$defs/decision"
+    }
+  },
+  "required": [
+    "table"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "decision": {
+      "type": "object",
+      "properties": {
+        "keep": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          }
+        }
+      },
+      "required": [
+        "keep",
+        "name",
+        "reason",
+        "claims"
+      ],
+      "additionalProperties": false
+    },
+    "claim": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "attribute": {
+              "enum": [
+                "name",
+                "description",
+                "conformsTo",
+                "encoding.fileType",
+                "encoding.header"
+              ]
+            },
+            "value": {},
+            "status": {
+              "enum": [
+                "declared",
+                "observed",
+                "inferred",
+                "unknown"
+              ]
+            },
+            "refs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "source_id"
+                ],
+                "additionalProperties": false
+              },
+              "maxItems": 4
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "attribute",
+            "value",
+            "status",
+            "refs",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "oneOf": [
+            {
+              "properties": {
+                "status": {
+                  "const": "unknown"
+                },
+                "value": {
+                  "type": "null"
+                },
+                "refs": {
+                  "maxItems": 0
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "encoding.fileType"
+                },
+                "status": {
+                  "const": "unknown"
+                },
+                "value": {
+                  "type": "string",
+                  "const": "unknown"
+                },
+                "refs": {
+                  "maxItems": 0
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "name"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "description"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "conformsTo"
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:[^\\s]+$"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:[^\\s]+$"
+                      },
+                      "minItems": 1
+                    }
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "encoding.fileType"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            },
+            {
+              "properties": {
+                "attribute": {
+                  "const": "encoding.header"
+                },
+                "value": {
+                  "type": "boolean"
+                },
+                "status": {
+                  "enum": [
+                    "declared",
+                    "observed",
+                    "inferred"
+                  ]
+                },
+                "refs": {
+                  "minItems": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

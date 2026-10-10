@@ -1,0 +1,48 @@
+{
+  "version": "v25",
+  "source_template": "inputs/evidence-template-original.json",
+  "table_attributes": [
+    "name",
+    "description",
+    "conformsTo",
+    "encoding.fileType",
+    "encoding.header"
+  ],
+  "field_attributes": [
+    "name",
+    "description",
+    "conformsTo",
+    "role",
+    "required",
+    "unique",
+    "value.datatype",
+    "value.unit.system",
+    "value.unit.code",
+    "value.enum.values",
+    "value.enum.valueSet"
+  ],
+  "entry_keys": [
+    "status",
+    "evidence_ids",
+    "support",
+    "reason",
+    "location",
+    "supporting_locations"
+  ],
+  "extensions": [
+    "description",
+    "table conformsTo",
+    "encoding.header",
+    "sourceViews",
+    "conflicts",
+    "coverage"
+  ],
+  "statuses": [
+    "declared",
+    "observed",
+    "inferred",
+    "unknown"
+  ],
+  "max_supporting_locations": 3,
+  "quote_policy": "Exact source substrings, no whitespace normalization"
+}

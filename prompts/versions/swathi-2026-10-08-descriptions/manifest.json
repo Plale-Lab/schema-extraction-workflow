@@ -1,0 +1,28 @@
+{
+  "authority": "Current user-supplied Paper and Dataset prompts, authorized for this repository snapshot.",
+  "completion_profile": "names_first",
+  "evaluation_alignment_order": [
+    "name",
+    "description",
+    "value.datatype",
+    "value.unit"
+  ],
+  "files": [
+    {
+      "bytes": 9748,
+      "kind": "paper",
+      "sha256": "767b715eb9f46d9f053237467269416576c70013550baa85cab590ffafca6fb8",
+      "versioned_file": "prompts/versions/swathi-2026-10-08-descriptions/Paper_prompt.md"
+    },
+    {
+      "bytes": 6389,
+      "kind": "dataset",
+      "sha256": "194c17f5e4bf12fec8d2fe94b3d4c04b46a194d0d6fe0bd52406e3ec761caa3b",
+      "versioned_file": "prompts/versions/swathi-2026-10-08-descriptions/Dataset_prompt.md"
+    }
+  ],
+  "numerical_weights_added": false,
+  "original_prompt_bytes_unchanged": true,
+  "version": "swathi-2026-10-08-descriptions",
+  "publication_note": "Local attachment paths omitted; prompt bytes and per-file SHA-256 values preserved."
+}

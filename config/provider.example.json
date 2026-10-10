@@ -1,0 +1,5 @@
+{
+  "base_url_env": "SCHEMA_BASE_URL",
+  "api_key_env": "SCHEMA_API_KEY",
+  "model": "MODEL_ID"
+}
